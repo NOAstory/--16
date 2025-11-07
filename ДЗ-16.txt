@@ -15,29 +15,18 @@ class Program
         Console.WriteLine($"N = {N}");
 
         int count = 0;
-        int currentNumber = StartNumber;
 
-       
-        while (currentNumber <= EndNumber)
+        
+        int firstMultiple = StartNumber;
+        while (firstMultiple % N != 0)  
         {
-            int remainder = currentNumber;
+            firstMultiple++;
+        }
 
-            
-            while (remainder >= N)
-            {
-                remainder -= N;
-            }
-
-           
-            if (remainder == 0)
-            {
-                count++;
-                currentNumber += N; 
-            }
-            else
-            {
-                currentNumber++; 
-            }
+        
+        for (int number = firstMultiple; number <= EndNumber; number += N)
+        {
+            count++;
         }
 
         Console.WriteLine($"Количество чисел от {StartNumber} до {EndNumber} кратных {N}: {count}");

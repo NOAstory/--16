@@ -4,31 +4,42 @@ class Program
 {
     static void Main()
     {
-        
+        const int MinN = 10;
+        const int MaxN = 25;
+        const int StartNumber = 50;
+        const int EndNumber = 150;
+
         Random random = new Random();
-        int N = random.Next(10, 26); 
+        int N = random.Next(MinN, MaxN + 1);
 
         Console.WriteLine($"N = {N}");
 
-        int count = 0; 
+        int count = 0;
+        int currentNumber = StartNumber;
 
-        
-        for (int i = 50; i <= 150; i++)
+       
+        while (currentNumber <= EndNumber)
         {
-           
-            int current = i;
-            while (current >= N)
-            {
-                current -= N;
-            }
+            int remainder = currentNumber;
 
             
-            if (current == 0)
+            while (remainder >= N)
+            {
+                remainder -= N;
+            }
+
+           
+            if (remainder == 0)
             {
                 count++;
+                currentNumber += N; 
+            }
+            else
+            {
+                currentNumber++; 
             }
         }
 
-        Console.WriteLine($"Количество чисел от 50 до 150 кратных {N}: {count}");
+        Console.WriteLine($"Количество чисел от {StartNumber} до {EndNumber} кратных {N}: {count}");
     }
 }

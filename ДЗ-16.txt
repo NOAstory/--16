@@ -4,31 +4,39 @@ class Program
 {
     static void Main()
     {
-        const int MinN = 10;
-        const int MaxN = 25;
-        const int StartNumber = 50;
-        const int EndNumber = 150;
+        const int MinValue = 10;
+        const int MaxValue = 25;
+        const int StartRange = 50;
+        const int EndRange = 150;
 
         Random random = new Random();
-        int N = random.Next(MinN, MaxN + 1);
+        int divisor = random.Next(MinValue, MaxValue + 1);
 
-        Console.WriteLine($"N = {N}");
+        Console.WriteLine($"Случайное число: {divisor}");
 
         int count = 0;
 
-        
-        int firstMultiple = StartNumber;
-        while (firstMultiple % N != 0)  
+        for (int number = StartRange; number <= EndRange; number++)
         {
-            firstMultiple++;
+            int temp = number;
+            bool isMultiple = false;
+
+            while (temp >= divisor)
+            {
+                temp -= divisor;
+            }
+
+            if (temp == 0)
+            {
+                isMultiple = true;
+            }
+
+            if (isMultiple)
+            {
+                count++;
+            }
         }
 
-        
-        for (int number = firstMultiple; number <= EndNumber; number += N)
-        {
-            count++;
-        }
-
-        Console.WriteLine($"Количество чисел от {StartNumber} до {EndNumber} кратных {N}: {count}");
+        Console.WriteLine($"Количество чисел от {StartRange} до {EndRange} кратных {divisor}: {count}");
     }
 }
